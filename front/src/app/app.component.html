@@ -1,0 +1,61 @@
+<div class="row">
+
+
+  <DIV ALIGN=center><h1>Reto Parte 1</h1></DIV>
+
+  <div class="row mt-5">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Nombre</th>
+          <th scope="col">Especie</th>
+          <th scope="col">Imagen</th>
+          <th scope="col">Estatus</th>
+          <th scope="col">Ver Detalle</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let personaje of personajes| paginate: { itemsPerPage: 20, currentPage: p, totalItems: total }">
+          <td>{{personaje.name}}</td>
+          <td>{{personaje.species}}</td>
+          <td><img src={{personaje.image}} width="50" height="50"></td>
+          <td>{{personaje.status}}</td>
+          <td><button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal1"
+              (click)=" verDetalle(personaje)">Detalle</button></td>
+        </tr>
+      </tbody>
+    </table>
+    <pagination-controls (pageChange)="pageChangeEvent($event)"></pagination-controls>
+
+
+  </div>
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">{{name}}</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-6">
+              <img src={{image}} width="200" height="200">
+            </div>
+            <div class="col-md-6">
+              <div class="row"><label>Nombre: {{name}}</label></div>
+              <div class="row"><label>Especie: {{especie}}</label></div>
+              <div class="row"><label>Genero: {{genero}}</label></div>
+              <div class="row"><label>Estatus: {{estatus}}</label></div>
+              <div class="row"><label>Origen: {{origen}}</label></div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
